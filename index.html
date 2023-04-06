@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
-     <style>
+    <style>
        *{
           margin:0;
           padding:0;
           box-sizing:border-box;
        }
+
     body {
         font-family:'Montserrat', sans-serif;
         font-weight:200;
         color:var(--tg-theme-text-color);
         background:var(--tg-theme-bg-color);
     }
-     main {
+    main {
         width:100%
         padding:20px;
         text-align:center;
-         }
+    }
     button{
 
         color:var(--tg-theme-button-color);
         background:var(--tg-theme-button-text-color);
+    }
+    #form {
+    display: none;
+    text-align:center;
     }
 
 
@@ -31,13 +36,37 @@
 </head>
 <body>
 <div id="main">
-    <h1>Кек</h1>
-    <h1>Кек</h1>
+    <h1>Кекиииссс</h1>
     <img src="https://cdn.icon-icons.com/icons2/3950/PNG/512/sofa_armchair_furniture_office_couch_desk_chair_icon_251507.png">
     <p>“Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, ”</p>
-    <button id="buy">Купить бутылку воды</button>
+    <button id="buy">Купить</button>
 </div>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
+
+<form id="form">  <!--Создание формочки -->
+    <input type="text" placeholder="Имя" id="user_name">
+    <input type="text" placeholder="Email" id="user_email">
+    <input type="text" placeholder="Телефон" id="user_phone">
+</form>
+
+<script src="<script src="https://telegram.org/js/telegram-web-app.js"></script>" <!-- добавляем библиотеку сюда от тг -->
+
+<script>
+    let tg=window.Telegram.WebApp; <!-- Создание объектат тг -->
+    let buy= document.getElementById("buy");
+    let order= document.getElementById("order");
+
+    buy.addEventListener("click",() => {
+        document.getElementById("main").style.display="none";
+        document.getElementById("form").style.display="block";
+        document.getElementById("user_name").value=tg.initDataUnsafe.user.first_name
+    });
+
+    order.addEventListener("click",() =>{
+    tg.close();
+    });
+
+</script>
+
+
 </body>
 </html>
